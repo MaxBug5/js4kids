@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header>
-    <a href="index.html">ГОЛОВНА</a>
-</header>
-
-<p>Все цікаве в терміналі. Натисніть Ctrl+Shift+I</p>
-
-
-
-
-
-    <script>
-var name = prompt("what`s your name?");
-console.log("Hello" + name);
-    </script>
+    <div id="game-container">
+        <h1>Hangman Game</h1>
+        <p id="word-display"></p>
+        <p>Incorrect letters: <span id="wrong-letters"></span></p>
+        <input type="text" id="letter-input" maxlength="1" autofocus>
+        <button id="guess-button">Guess</button>
+        <p id="message"></p>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
