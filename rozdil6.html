@@ -7,14 +7,59 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>Hangman Game</h1>
-        <p id="word-display"></p>
-        <p>Incorrect letters: <span id="wrong-letters"></span></p>
-        <input type="text" id="letter-input" maxlength="1" autofocus>
-        <button id="guess-button">Guess</button>
-        <p id="message"></p>
-    </div>
-    <script src="scripts.js"></script>
+<script>
+    const words = ['javascript', 'html', 'css', 'node', 'react'];
+const word = words[Math.floor(Math.random() * words.length)];
+let guessedLetters = [];
+let wrongLetters = [];
+
+const wordDisplay = document.getElementById('word-display');
+const wrongLettersDisplay = document.getElementById('wrong-letters');
+const message = document.getElementById('message');
+const letterInput = document.getElementById('letter-input');
+
+function updateWordDisplay() {
+    wordDisplay.textContent = word
+        .split('')
+        .map(letter => (guessedLetters.includes(letter) ? letter : '_'))
+        .join(' ');
+}
+
+function updateWrongLettersDisplay() {
+    wrongLettersDisplay.textContent = wrongLetters.join(', ');
+}
+
+function checkWin() {
+    if (word.split('').every(letter => guessedLetters.includes(letter))) {
+        message.textContent = 'You win!';
+    }
+}
+
+function checkLoss() {
+    if (wrongLetters.length >= 6) {
+        message.textContent = `You lost! The word was: ${word}`;
+    }
+}
+
+document.getElementById('guess-button').addEventListener('click', () => {
+    const guess = letterInput.value.toLowerCase();
+    letterInput.value = '';
+
+    if (guess && !guessedLetters.includes(guess) && !wrongLetters.includes(guess)) {
+        if (word.includes(guess)) {
+            guessedLetters.push(guess);
+            updateWordDisplay();
+            checkWin();
+        } else {
+            wrongLetters.push(guess);
+            updateWrongLettersDisplay();
+            checkLoss();
+        }
+    }
+});
+
+updateWordDisplay();
+</script>
+
 </body>
 </html>
