@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Шибениця!</title>
+</head>
+
+<body>
+	<h1>Шибениця!</h1>
+	
+	<script>
+	var words = [
+	"apple",
+	"table",
+	"chair",
+	"house",
+	"water",
+	"music",
+	"flower",
+	"phone",
+	"friend",
+	"game"
+];
+
+var word = words[Math.floor(Math.random() * words.length)];
+
+var answerArray = [];
+for (var i = 0; i < word.length; i++) {
+	answerArray[i] = "_";
+}
+var counter=0;
+var remainingLetters = word.length;
+var trys = word.length * 2 ;
+while (remainingLetters > 0) {
+	alert(answerArray.join(" "));
+
+	var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+    counter++
+	console.log(counter);
+	guess = guess.toLowerCase() ;
+	if (guess === null) {
+		break;
+	} else if (guess.length !== 1) {
+		alert("Please enter a single letter.");
+	} else {
+	
+		for (var i = 0; i < word.length; i++) {
+			if (word[i] === guess) {
+				if (answerArray[i] === "_") { // Перевірка, чи буква вже була вгадана
+					answerArray[i] = guess;
+					remainingLetters--;
+					
+				}
+			}
+		}
+	}
+}
+
+alert("Good job! The word was " + word + "." + " ти відгадав слово за " + counter + " спроб" );
+	</script>
+</body>
+</html>
