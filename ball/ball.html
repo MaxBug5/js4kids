@@ -90,7 +90,15 @@ Ball.prototype.setDirection = function (direction) {
         this.speed = 0
     }
     console.log("speed",this.speed);
-  } 
+  } else if (direction === "upSize"){
+    this.size +=1;
+  } else if (direction === "downSize"){
+    this.size -=1;
+
+    if (this.size < 3) {
+        this.size = 3
+    }
+  };
 };
 
 
@@ -104,10 +112,10 @@ var keyActions = {
     38: "up",
     39: "right",
     40: "down",
-    90: "upSpeed",
-    88: "downSpeed",
-    68: "upSize",
-    86: "downSize"
+    90: "upSpeed",   // z
+    88: "downSpeed", // x
+    67: "upSize",    // c
+    86: "downSize"   // v
 };
 
 $("body").keydown(function(event) {
