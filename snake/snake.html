@@ -105,10 +105,17 @@
       this.nextDirection = "right";
     };
 
+    function getRandomColor() {
+      var r = Math.floor(Math.random() * 256);
+      var g = Math.floor(Math.random() * 256);
+      var b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
   
     Snake.prototype.draw = function () {
-      for (var i = 0; i < this.segments.length; i++) {
-        this.segments[i].drawSquare("Blue");
+      this.segments[0].drawSquare("Red");
+      for (var i = 1; i < this.segments.length; i++) {
+        this.segments[i].drawSquare(getRandomColor());
       }
     };
 
